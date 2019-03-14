@@ -1,1 +1,5 @@
-# when-elements
+# WhenElements
+
+```
+npm install when-elements
+```

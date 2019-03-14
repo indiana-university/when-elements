@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WhenElements</title>
+  <script src="../dist/when-elements.min.js"></script>
+  <script>
+  this.onload = function () {
+    WhenElements.added('[is="when-element"]', function (element) {
+      console.log('Mounted', element)
+    })
+    setTimeout(function () {
+      document.querySelector('button').setAttribute('test', 123);
+    }, 1000);
+    function log() {
+      document.body.appendChild(
+        document.createElement('div')
+      ).textContent = [].join.call(arguments, ', ');
+    }
+  }
+  </script>
+</head>
+<body>
+  <button is="when-element">click test</button>
+</body>
+</html>

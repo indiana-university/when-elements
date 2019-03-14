@@ -1,0 +1,44 @@
+{
+  "name": "when-elements",
+  "version": "0.1.0",
+  "description": "Callbacks for when elements are added or removed from the DOM",
+  "main": "dist/when-elements.cjs.js",
+  "module": "dist/when-elements.esm.js",
+  "browser": "dist/when-elements.min.js",
+  "scripts": {
+    "build": "rollup -c && npm run min",
+    "start": "rollup -c -w",
+    "min": "uglifyjs dist/when-elements.min.js -o dist/when-elements.min.js --comments /@version/ --source-map \"url='when-elements.min.js.map'\" -m -c",
+    "test": "standard 'src/**/*.js'"
+  },
+  "keywords": [
+    "dom",
+    "custom",
+    "elements",
+    "define",
+    "lifecycle",
+    "mount",
+    "unmount"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basham/when-elements.git"
+  },
+  "author": "Chris Basham <chris@bash.am>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/basham/when-elements/issues"
+  },
+  "homepage": "https://github.com/basham/when-elements#readme",
+  "devDependencies": {
+    "@babel/core": "7.3.4",
+    "@babel/preset-env": "7.3.4",
+    "rollup": "1.6.0",
+    "rollup-plugin-babel": "4.3.2",
+    "rollup-plugin-commonjs": "9.2.1",
+    "rollup-plugin-node-resolve": "4.0.1",
+    "rollup-plugin-uglify": "6.0.2",
+    "standard": "12.0.1",
+    "uglify-js": "3.4.9"
+  }
+}

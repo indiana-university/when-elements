@@ -45,12 +45,21 @@ export function whenAdded (selector, callback) {
   check()
   whenCallbacks.add(check)
   function check () {
-    Array.from(document.querySelectorAll(selector))
-      .filter((element) => !addedElements.has(element))
-      .forEach(function (element) {
+    // `document.querySelectorAll` returns a NodeList, not an array.
+    // It could be converted, but `Array.from` is not supported in IE,
+    // a polyfill is too much, and a small utility to push items into
+    // an array would only be used once. Since `Array.filter` is the
+    // only operator needed, an `if` conditional will work fine.
+    document.querySelectorAll(selector)
+      .forEach((element) => {
+        if (addedElements.has(element)) {
+          return
+        }
         addedElements.add(element)
         const returnValue = callback(element)
-        const removedCallback = typeof returnValue === 'function' ? returnValue : () => {}
+        const removedCallback = typeof returnValue === 'function'
+          ? returnValue
+          : () => {}
         whenRemoved(selector, element, () => {
           addedElements.delete(element)
           removedCallback()

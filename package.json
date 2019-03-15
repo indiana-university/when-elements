@@ -6,9 +6,10 @@
   "module": "dist/when-elements.esm.js",
   "browser": "dist/when-elements.min.js",
   "scripts": {
-    "build": "rollup -c && npm run min",
-    "start": "rollup -c -w",
+    "build": "npm run clean && rollup -c && npm run min",
+    "clean": "rm -rf dist",
     "min": "uglifyjs dist/when-elements.min.js -o dist/when-elements.min.js --comments /@version/ --source-map \"url='when-elements.min.js.map'\" -m -c",
+    "start": "rollup -c -w",
     "test": "standard 'src/**/*.js'"
   },
   "keywords": [

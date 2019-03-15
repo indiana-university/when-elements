@@ -3,7 +3,7 @@
 Callbacks for when elements are added or removed from the DOM.
 
 - No polyfills needed.
-- Works down to IE 11 (cerca 2013).
+- Works down to IE11 (cerca 2013).
 - Lightweight (~0.8kb min, ~0.5kb min+gzip).
 - Register start up and shut down callbacks for elements, based on CSS selectors.
 - Define multiple behaviors (different callbacks) for the same element.

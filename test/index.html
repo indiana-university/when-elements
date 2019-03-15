@@ -7,22 +7,73 @@
   <title>WhenElements</title>
   <script src="../dist/when-elements.min.js"></script>
   <script>
-  this.onload = function () {
-    WhenElements.added('[is="when-element"]', function (element) {
-      console.log('Mounted', element)
+    WhenElements.added('[is="add-clicker"]', function (element) {
+      element.addEventListener('click', function () {
+        const clickers = document.querySelector('#clickers')
+        const button = document.createElement('button')
+        button.setAttribute('is', 'clicker')
+        button.setAttribute('data-maxclicks', i)
+        clickers.append(button)
+      })
     })
-    setTimeout(function () {
-      document.querySelector('button').setAttribute('test', 123);
-    }, 1000);
-    function log() {
-      document.body.appendChild(
-        document.createElement('div')
-      ).textContent = [].join.call(arguments, ', ');
+
+    WhenElements.added('[is="remove-all-clickers"]', function (element) {
+      element.addEventListener('click', function () {
+        const clickers = document.querySelector('#clickers')
+        clickers.innerHTML = ''
+      })
+    })
+
+    let i = 0
+    WhenElements.added('[is="clicker"]', function (element) {
+      let c = parseInt(element.dataset.maxclicks)
+      updateLabel()
+      const prepend = `Clicker ${++i}: `
+      log(`${prepend}Element added`)
+      log(`${prepend}Removing button after ${c} ${pluralize('click', c)}.`)
+      element.addEventListener('click', function () {
+        c--
+        updateLabel()
+        if (c > 0) {
+          log(`${prepend}Removing button after ${c} more ${pluralize('click', c)}.`)
+        }
+        else {
+          log(`${prepend}Removing button.`)
+          element.remove()
+        }
+      })
+      function updateLabel () {
+        element.textContent = `Click (${c})`
+      }
+      return function () {
+        log(`${prepend}Button removed.`)
+      }
+    })
+
+    function log (status) {
+      const el = document.querySelector('#status > ol')
+      const li = document.createElement('li')
+      li.textContent = status
+      el.append(li)
     }
-  }
+
+    function pluralize (singular, count, plural = `${singular}s`) {
+      return count === 1 ? singular : plural
+    }
   </script>
 </head>
 <body>
-  <button is="when-element">click test</button>
+  <h1>Test</h1>
+  <p>
+    <button is="add-clicker">Add clicker</button>
+    <button is="remove-all-clickers">Remove all clickers</button>
+  </p>
+  <p id="clickers">
+    <button is="clicker" data-maxclicks="3"></button>
+  </p>
+  <h2>Log</h2>
+  <div id="status" role="status">
+    <ol></ol>
+  </div>
 </body>
 </html>

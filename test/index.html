@@ -17,6 +17,15 @@
       })
     })
 
+    WhenElements.added('[is="click-all-clickers"]', function (element) {
+      element.addEventListener('click', function () {
+        document.querySelectorAll('[is="clicker"]')
+          .forEach(function (clicker) {
+            clicker.click()
+          })
+      })
+    })
+
     WhenElements.added('[is="remove-all-clickers"]', function (element) {
       element.addEventListener('click', function () {
         const clickers = document.querySelector('#clickers')
@@ -66,6 +75,7 @@
   <h1>Test</h1>
   <p>
     <button is="add-clicker">Add clicker</button>
+    <button is="click-all-clickers">Click all clickers</button>
     <button is="remove-all-clickers">Remove all clickers</button>
   </p>
   <p id="clickers">

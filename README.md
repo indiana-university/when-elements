@@ -49,6 +49,66 @@ npm install when-elements
 const { whenAdded, whenRemoved } = require('when-elements')
 ```
 
+## Examples
+
+### Create custom web components
+
+Countdown until 0. Stop if the element is removed.
+
+```html
+<my-countdown seconds="60"></my-countdown>
+```
+
+```js
+whenAdded('my-countdown', function (element) {
+  const seconds = parseInt(element.getAttribute('seconds'))
+  let count = seconds
+  update()
+  const intervalId = setInterval(() => {
+    count--
+    update()
+  }, 1000)
+  setTimeout(cleanup, 1000 * seconds)
+  function update () {
+    element.textContent = count
+  }
+  function cleanup () {
+    clearInterval(intervalId)
+  }
+  return cleanup
+})
+```
+
+### Extend element
+
+Remove button after it is clicked a maximum number of times.
+
+```html
+<button is="clicker" data-maxclicks="3">Remove</button>
+```
+
+```js
+whenAdded('[is="clicker"]', function (element) {
+  let clicks = parseInt(element.dataset.maxclicks)
+  update()
+  element.addEventListener('click', function () {
+    clicks--
+    if (clicks > 0) {
+      update()
+    } else {
+      element.remove()
+    }
+  })
+  function update () {
+    element.textContent = `Remove (${clicks} more click${clicks === 1 ? '' : 's'})`
+  }
+})
+```
+
+### More
+
+Review more examples in [`./test`](./test).
+
 ## API
 
 ### whenAdded

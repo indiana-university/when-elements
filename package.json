@@ -23,14 +23,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/basham/when-elements.git"
+    "url": "git+https://github.com/indiana-university/when-elements.git"
   },
   "author": "Chris Basham <chris@bash.am>",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/basham/when-elements/issues"
+    "url": "https://github.com/indiana-university/when-elements/issues"
   },
-  "homepage": "https://github.com/basham/when-elements#readme",
+  "homepage": "https://github.com/indiana-university/when-elements#readme",
   "devDependencies": {
     "@babel/core": "7.3.4",
     "@babel/preset-env": "7.3.4",

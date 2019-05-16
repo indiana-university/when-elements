@@ -1,6 +1,6 @@
 {
   "name": "when-elements",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Callbacks for when elements are added or removed from the DOM",
   "main": "dist/when-elements.cjs.js",
   "module": "dist/when-elements.esm.js",

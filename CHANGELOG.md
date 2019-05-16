@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.2.1
+
+Published May 16, 2019.
+
+### Bugs
+
+1. Check for initial element matches after `whenAdded` and `whenRemoved` are called, not during. This aligns with `customElements` behavior. ([#1](https://github.com/indiana-university/when-elements/issues/1))
+
 ## v0.2.0
 
 Published April 16, 2019.

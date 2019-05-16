@@ -15,7 +15,7 @@ mutationObserver.observe(document, {
 
 export function whenAdded (selector, callback) {
   const addedElements = new Set()
-  check()
+  setTimeout(check)
   whenCallbacks.add(check)
   function check () {
     // `document.querySelectorAll` returns a NodeList, not an array.
@@ -42,7 +42,7 @@ export function whenAdded (selector, callback) {
 }
 
 export function whenRemoved (selector, target, callback) {
-  check()
+  setTimeout(check)
   whenCallbacks.add(check)
   function check () {
     if (target && document.contains(target) && target.matches(selector)) {

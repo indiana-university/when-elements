@@ -2,7 +2,7 @@
 
 ## v0.3
 
-Published May 16, 2019.
+Published TBD.
 
 1. **Change:** Remove selector match checking from `whenRemoved`. ([#2](https://github.com/indiana-university/when-elements/issues/2))
 

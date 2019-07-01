@@ -165,23 +165,3 @@ This library is inspired by [`wickedElements`](https://github.com/WebReflection/
 1. `regularElements` tries to adhere closely to the `customElements` spec, so it looks familiar. `WhenElements` provides a simple API, without trying to adhere to the `customElements` spec.
 2. `onconnected()` can be called multiple times per element with `regularElements`. `wickedElements` adds `init()` to `regularElements`, to guarantee a single initialization per element. `whenAdded()` behaves this way by default.
 3. `regularElements` protects against multiple definitions using the same selector. `whenAdded()` does not check this. That way, multiple behaviors could be defined in different places, even if they affect the same set of elements.
-
-## Backlog
-
-`whenAdded()`:
-1. Return a function to cancel `whenAdded()`.
-2. An optional `options` argument could allow for changes in the default behavior.
-3. Option: Cancel after first match.
-4. Option: Cancel after N matches.
-5. Demonstrate how to bundle multiple `whenRemoved()` calls in the single return function.
-6. Add tests.
-
-`whenRemoved()`:
-1. Return a function to cancel `whenRemoved()`.
-2. Make selector optional and target required.
-3. Make target optional and selector required.
-4. Add tests.
-
-Other potential methods:
-1. `register()`: Define other methods to hook into the same DOM mutation callback that `whenAdded()` and `whenRemoved()` uses. Confirm if there's any performance penalty to having multiple duplicate `MutationObserver` declarations.
-2. `get()`: Get an array of initialized elements.

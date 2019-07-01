@@ -33,7 +33,7 @@ export function whenAdded (selector, callback) {
         const removedCallback = typeof returnValue === 'function'
           ? returnValue
           : () => {}
-        whenRemoved(selector, element, () => {
+        whenRemoved(element, () => {
           addedElements.delete(element)
           removedCallback()
         })
@@ -41,11 +41,11 @@ export function whenAdded (selector, callback) {
   }
 }
 
-export function whenRemoved (selector, target, callback) {
+export function whenRemoved (target, callback) {
   setTimeout(check)
   whenCallbacks.add(check)
   function check () {
-    if (target && document.contains(target) && target.matches(selector)) {
+    if (target && document.contains(target)) {
       return
     }
     whenCallbacks.delete(check)

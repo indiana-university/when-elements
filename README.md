@@ -124,9 +124,8 @@ whenAdded(selector, (element) => {
   // Initialize.
 
   // Optional: Return a function to be called when
-  // the element no longer matches the selector or
-  // is removed from the DOM. This is the same as:
-  // `whenRemoved(selector, element, () => { ... })`
+  // the element is removed from the DOM. This is the same as:
+  // `whenRemoved(element, () => { ... })`
   return () => {
     // Clean up.
   }
@@ -141,14 +140,14 @@ WhenElements.added()
 
 ### whenRemoved
 
-Call a function when the element is removed from the DOM or no longer matches the CSS selector. It will be called only once per element.
+Call a function when the element is removed from the DOM. It will be called only once per element.
 
 ```
-whenRemoved(selector: String, element: HTMLElement, callback: Function)
+whenRemoved(element: HTMLElement, callback: Function)
 ```
 
 ```js
-whenRemoved(selector, element, () => {
+whenRemoved(element, () => {
   // Clean up.
 })
 ```
@@ -165,8 +164,7 @@ This library is inspired by [`wickedElements`](https://github.com/WebReflection/
 
 1. `regularElements` tries to adhere closely to the `customElements` spec, so it looks familiar. `WhenElements` provides a simple API, without trying to adhere to the `customElements` spec.
 2. `onconnected()` can be called multiple times per element with `regularElements`. `wickedElements` adds `init()` to `regularElements`, to guarantee a single initialization per element. `whenAdded()` behaves this way by default.
-3. `ondisconnected()` is called when the element is removed from the DOM, but not when the element no longer matches the selector provided in `define()`. This could be limiting, depending on the use case. `whenRemoved()` solves this.
-4. `regularElements` protects against multiple definitions using the same selector. `whenAdded()` does not check this. That way, multiple behaviors could be defined in different places, even if they affect the same set of elements.
+3. `regularElements` protects against multiple definitions using the same selector. `whenAdded()` does not check this. That way, multiple behaviors could be defined in different places, even if they affect the same set of elements.
 
 ## Backlog
 
